@@ -2,6 +2,7 @@ pwd = 'yourpasswordhere'
 
 from bottle import *
 import pymysql
+import os
 
 conn = pymysql.connect(host='tsuts.tskoli.is', port=3306, user='kag', passwd=pwd, db='kag_test')
 c = conn.cursor()
@@ -137,4 +138,4 @@ def submit_update():
 
     return redirect('/')
 
-run()
+run(host='0.0.0.0', port=int(os.environ.get('PORT',5000)))
